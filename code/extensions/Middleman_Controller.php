@@ -138,6 +138,8 @@ class Middleman_Controller extends Extension {
             $results->merge($products);
         }
 
+        $results = $results->sort("Title","ASC");
+
         $data = array(
             'Results' => $results,
             'Query' => $form->getSearchQuery(),
