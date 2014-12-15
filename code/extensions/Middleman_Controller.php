@@ -88,29 +88,4 @@ class Middleman_Controller extends Extension {
         }
     }
 
-    /**
-     * Site search form
-     */
-    public function SearchForm() {
-        if(FulltextSearchable::get_searchable_classes() && class_exists("SearchForm")) {
-            $searchText =  _t('SearchForm.SEARCH', 'Search');
-
-            if($this->owner->request && $this->owner->request->getVar('Search')) {
-                $searchText = $this->owner->request->getVar('Search');
-            }
-
-            $fields = new FieldList(
-                new TextField('Search', false, $searchText)
-            );
-            $actions = new FieldList(
-                new FormAction('results', _t('SearchForm.GO', 'Go'))
-            );
-
-            $form = new SearchForm($this->owner, 'SearchForm', $fields, $actions);
-            $form->classesToSearch(FulltextSearchable::get_searchable_classes());
-
-            return $form;
-        }
-    }
-
 }
